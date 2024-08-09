@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+ {% load static %} 
+{% block title %}Home{% endblock%}
+ {% block content %}
+
+<section
+  class="w-full min-h-[300px] items-center text-blue-950 py-2 gap-3 flex justify-center"
+>
+  <div class="flex flex-col text-center">
+    <h1 class="text-3xl font-extrabold">
+      Learn <span id="subject">Python </span>
+    </h1>
+    <p>Hello my name is Mian Muhammad Tayyab</p>
+  </div>
+</section>
+
+<script src="{% static "index.js" %}">
+  
+</script>
+
+{% endblock %}

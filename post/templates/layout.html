@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "style.css" %}">
+    <title> {% block title %}
+        Home
+        {% endblock %}</title>
+</head>
+<body>
+<nav class="flex py-6   justify-evenly items-center bg-gray-700">
+<div class="flex items-center gap-4 justify-between">
+    <div >
+        <a href="">
+            <h1 class="text-blue-50 -translate-x-4 font-semibold text-3xl mr-3">Tayyab's Blog</h1>
+        </a>
+    </div>
+    <ul class="flex  min-w-[200px] justify-between">
+        <li><a class="text-white" href="">Home</a></li>
+        <li><a class="text-white" href="">Blogs</a></li>
+        <li><a class="text-white" href="">Login</a></li>
+    </ul>
+    
+</div>
+<form class="flex h-[50px] gap-3" action="">
+    <input class="rounded-md" type="text">
+    <button type="submit" class="text-white bg-blue-600 rounded-md px-2 hover:bg-blue-700  ">Search</button>
+</form>
+</nav>
+{% block content %}{% endblock %}
+
+</body>
+</html>
