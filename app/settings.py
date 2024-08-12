@@ -11,11 +11,15 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 import os
-from pathlib import Path
+import cloudinary
+import cloudinary.uploader
 
+from pathlib import Path
+import dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+dotenv.load_dotenv()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -38,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
+    'cloudinary',
     'post',
 ]
 
@@ -76,13 +82,20 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+  'default': {
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': os.getenv('PGDATABASE'),
+    'USER': os.getenv('PGUSER'),
+    'PASSWORD': os.getenv('PGPASSWORD'),
+    'HOST': os.getenv('PGHOST'),
+    'PORT': os.getenv('PGPORT', 5432),
+    'OPTIONS': {
+      'sslmode': 'require',
+    },
+    
+    'DISABLE_SERVER_SIDE_CURSORS': True,
+  }
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -124,6 +137,12 @@ MEDIA_URL = 'media/'
 STATICFILES_DIRS =[
 os.path.join(BASE_DIR,"static")
 ]
+cloudinary.config( 
+    cloud_name = os.getenv("CLOUD_NAME"), 
+    api_key = os.getenv('API_KEY'), 
+    api_secret = os.getenv('API_SECRET'), # Click 'View Credentials' below to copy your API secret
+    secure=True
+)
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR,"media")
@@ -133,3 +152,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR,"media")
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+

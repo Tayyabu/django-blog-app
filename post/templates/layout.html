@@ -5,31 +5,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static "style.css" %}">
+    <link rel="shortcut icon" href="/media/icon.png" type="image/x-png">
     <title> {% block title %}
         Home
         {% endblock %}</title>
 </head>
 <body>
-<nav class="flex py-6   justify-evenly items-center bg-gray-700">
-<div class="flex items-center gap-4 justify-between">
-    <div >
-        <a href="">
-            <h1 class="text-blue-50 -translate-x-4 font-semibold text-3xl mr-3">Tayyab's Blog</h1>
-        </a>
-    </div>
-    <ul class="flex  min-w-[200px] justify-between">
-        <li><a class="text-white" href="">Home</a></li>
-        <li><a class="text-white" href="">Blogs</a></li>
-        <li><a class="text-white" href="">Login</a></li>
-    </ul>
+<nav class="flex flex-col sm:p-3 sm:justify-between sm:flex-row bg-gray-700 items-center" >
     
-</div>
+    <div class="flex py-6   justify-evenly items-center bg-gray-700">
+        <div class="flex items-center gap-4 justify-between">
+        
+            <ul id="menu" class=" flex flex-col justify-center z-20 items-center gap-3 bg-gray-700 w-[80%] absolute  rounded-lg  left-10 border-white border top-[180px] md:hidden sm:hidden ">
+                <li class="flex h-[50px] justify-center rounded-t-lg  items-center transition-opacity  duration-500 w-[100%] bg-gray-700"><a class="text-white   " href="">Home</a></li>
+                <li class="flex h-[50px] justify-center items-center transition-opacity  duration-500 w-[100%] bg-gray-700 border-t-2"><a class="text-white  " href="">Blogs</a></li>
+                <li class="flex h-[50px] justify-center items-center rounded-b-lg transition-opacity  duration-300 w-[100%] bg-gray-700 border-t-2"><a class="text-white  " href="">Login</a></li>
+            </ul>
+        
+        <div >
+            <a class="block ml-2" href="">
+                <h1 class="text-blue-50   font-semibold text-3xl mr-3">Tayyab's Blog</h1>
+            </a>
+        </div>
+        <ul  class=" hidden  sm:flex md:flex sm:min-w-[200px] sm:justify-between">
+            <li><a class="text-white" href="">Home</a></li>
+            <li><a class="text-white" href="">Blogs</a></li>
+            <li><a class="text-white" href="">Login</a></li>
+        </ul>
+        
+        </div>
+    </div>
 <form class="flex h-[50px] gap-3" action="">
     <input class="rounded-md" type="text">
     <button type="submit" class="text-white bg-blue-600 rounded-md px-2 hover:bg-blue-700  ">Search</button>
 </form>
+<div class="flex p-5  mr-3 flex-1 sm:hidden">
+    <button id="menu-btn" >
+        <svg xmlns="http://www.w3.org/2000/svg" class="ml-5  text-white" width="25" height="25" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+          </svg>
+    </button>
+</div>
 </nav>
 {% block content %}{% endblock %}
+<footer class="flex p-5 mt-5 bg-slate-300 justify-center items-center">
+<h1>Copyright &copy; 2024 </h1>
 
+</footer>
+<script>
+    
+const button = document.querySelector('#menu-btn')
+const ul = document.querySelector('#menu')
+ul.classList.toggle("hidden")
+button.addEventListener("click",()=>{
+  ul.classList.toggle("hidden")
+
+})
+
+</script>
 </body>
 </html>
