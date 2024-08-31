@@ -15,11 +15,11 @@ import cloudinary
 import cloudinary.uploader
 
 from pathlib import Path
-import dotenv
+from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-dotenv.load_dotenv()
+load_dotenv()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -44,7 +44,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary_storage',
     'cloudinary',
+    'ckeditor',
+       'tinymce',
     'post',
+
 ]
 
 MIDDLEWARE = [
@@ -96,6 +99,12 @@ DATABASES = {
     'DISABLE_SERVER_SIDE_CURSORS': True,
   }
 }
+
+
+
+
+
+
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 

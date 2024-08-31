@@ -2,37 +2,31 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from cloudinary.models import CloudinaryField
-
+from tinymce import models as md
 
 # Create your models here
 
 class Post(models.Model):
     title = models.CharField(max_length =50,unique=True)
-    intro =models.TextField()
+    intro = models.TextField()
+    content = md.HTMLField(null=True,blank=True)
+
     created_at = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(default ="",blank=True,null=True)
+    is_popular = models.BooleanField(default=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE,related_name ="posts")
+   
     def partial_intro(self):
-        return self.intro[:100]
+        return f'{self.intro[:30]}...'
 
     def __str__(self):
         return self.title
 
 
-class Section(models.Model):
-    subtitle = models.CharField(max_length=50,unique=True)
-    paragraph = models.TextField()
-    image= CloudinaryField('image',null=True,blank=True)
-    post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name ="sections")
-    created_at =models.DateTimeField(auto_now_add =True)
-    def __str__(self) -> str:
-        return f"{self.subtitle} of post \"{self.post.title}\""
-    
-    class Meta:
-        ordering = ("-created_at",)
-    
 
-
+class BlogImage(models.Model):
+    image =CloudinaryField()
+    posts =models.ManyToManyField(Post,related_name="images")
 
 
 
