@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render,get_object_or_404
 from .models import Post
+from django.db.models import Q
 # Create your views here.
 
 
@@ -12,7 +13,7 @@ def home(request):
   
     return render(request,"index.html",{"posts":posts})
 
-def all_posts(request):
+def blogs(request):
   
      
     posts =Post.objects.all()
@@ -24,3 +25,11 @@ def all_posts(request):
 def get_post_by_slug(request,slug):
     post =get_object_or_404(Post,slug=slug)
     return render(request,"post_page.html",{"post":post})
+
+
+def search(request):
+    search_text= request.GET['search']
+    posts = Post.objects.filter(Q(title__icontains=search_text)| Q(intro__icontains=search_text)|Q(content__icontains=search_text))
+    if len(posts)>0:
+        return render(request,'search.html',{'posts':posts})
+    return render(request,'search.html')

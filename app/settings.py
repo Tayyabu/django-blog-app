@@ -45,6 +45,11 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'cloudinary',
     'post',
+    'allauth'
+    ,'allauth.account',
+        'allauth.socialaccount',
+        'allauth.socialaccount.providers.github',
+
 
 ]
 
@@ -56,7 +61,21 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+     "allauth.account.middleware.AccountMiddleware",
 ]
+
+
+SOCIALACCOUNT_PROVIDERS = {
+    'github': {
+       
+        'APP': {
+            'client_id': ' Ov23libjPlSp9MNDN0Iy ',
+            'secret': '8117133514d9c4ab1b2a6e9d72a58fe85f1eff04',
+            'key': ''
+        }
+    }
+}
+
 
 ROOT_URLCONF = 'app.urls'
 
@@ -160,3 +179,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR,"media")
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+AUTHENTICATION_BACKENDS = [
+    
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+
+]

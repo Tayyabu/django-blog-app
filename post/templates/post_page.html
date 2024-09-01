@@ -1,13 +1,13 @@
 {% extends "layout.html" %} {% load static %}
- {% block title %}All Blog Posts{% endblock%} 
+ {% block title %}{{post.title}}{% endblock%} 
     {% block content %}
 <h1>{{post.title}}</h1>
 
 <div>
-    {{pos6.intro}}
+    {{post.intro}}
 </div>
 
 {{post.content | safe}}
 
-
+<script src="https://cdn.tailwindcss.com"></script>
 {% endblock %}

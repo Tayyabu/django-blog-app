@@ -3,17 +3,21 @@
     {% block content %}
 <section class=" flex justify-center items-center  ">
   <div class="grid grid-cols-1 gap-3 p-5 pb-8  justify-center items-center  sm:grid-cols-2 min-w-full">
-      {% for post in posts %}
-      <a href="{% url "home" %}" class=" bg-slate-100 h-[200px] rounded-lg flex flex-col items-center justify-center">
+    {% if posts %}
+    {% for post in posts %}
+    <a href="{% url "home" %}" class=" bg-slate-100 h-[200px] rounded-lg flex flex-col items-center justify-center">
         <h1 class="font-bold p-5 text-xl">{{post.title}}</h1>
         <p>{{post.partial_intro}}</p>
         <div class="flex font-medium m-5  gap-10 " >
-          <p >Written By {{post.author.username}}</p>
-          
-          <p class="font-bold text-sm text-end">{{post.created_at | timesince }}</p>
+            <p >Written By {{post.author.username}}</p>
+            
+            <p class="font-bold text-sm text-end">{{post.created_at | timesince }}</p>
         </div>
-      </a>
-      {% endfor %}
+    </a>
+    {% endfor %}
+    {% else %}
+    <h1 class="font-bold text-2xl text-center w-full ">No post found</h1>
+    {% endif %}
   </div>
 </section>
 {% endblock %}

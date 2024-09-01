@@ -18,7 +18,7 @@
         
             <ul id="menu" class=" flex flex-col justify-center z-20 items-center gap-3 bg-gray-700 w-[80%] absolute  rounded-lg  left-10 border-white border top-[180px] md:hidden sm:hidden ">
                 <li class="flex h-[50px] justify-center rounded-t-lg  items-center transition-opacity  duration-500 w-[100%] bg-gray-700"><a class="text-white   " href="{% url "home" %}">Home</a></li>
-                <li class="flex h-[50px] justify-center items-center transition-opacity  duration-500 w-[100%] bg-gray-700 border-t-2"><a class="text-white  " href="{% url "all_posts" %}">Blogs</a></li>
+                <li class="flex h-[50px] justify-center items-center transition-opacity  duration-500 w-[100%] bg-gray-700 border-t-2"><a class="text-white  " href="{% url "blogs" %}">Blogs</a></li>
                 <li class="flex h-[50px] justify-center items-center rounded-b-lg transition-opacity  duration-300 w-[100%] bg-gray-700 border-t-2"><a class="text-white  " href="">Login</a></li>
             </ul>
         
@@ -29,15 +29,15 @@
         </div>
         <ul  class=" hidden  sm:flex md:flex sm:min-w-[200px] sm:justify-between">
             <li><a class="text-white" href="{% url "home" %}">Home</a></li>
-            <li><a class="text-white" href="{% url "all_posts" %}">Blogs</a></li>
+            <li><a class="text-white" href="{% url "blogs" %}">Blogs</a></li>
             <li><a class="text-white" href="">Login</a></li>
         </ul>
         
         </div>
     </div>
 
-<form class="flex h-[50px] gap-3" action="">
-    <input class="rounded-md" type="text">
+<form class="flex h-[50px] gap-3" action="{% url "search" %}">
+    <input class="rounded-md" name="search" type="text">
     <button type="submit" class="text-white bg-blue-600 rounded-md px-2 hover:bg-blue-700  ">Search</button>
 </form>
 <div class="flex p-5  mr-3 flex-1 sm:hidden">
@@ -48,7 +48,7 @@
     </button>
 </div>
 </nav>
-<main class="grow" >{% block content %}{% endblock %}</main>
+<main class="grow min-h-[500px] " >{% block content %}{% endblock %}</main>
 <footer class="flex  p-5 mt-5 bg-slate-300 justify-center items-center">
 <h1>Copyright &copy; 2024 </h1>
 
