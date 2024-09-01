@@ -10,7 +10,7 @@
         Home
         {% endblock %}</title>
 </head>
-<body>
+<body class="flex flex-col">
 <nav class="flex flex-col sm:p-3 sm:justify-between sm:flex-row bg-gray-700 items-center" >
     
     <div class="flex py-6   justify-evenly items-center bg-gray-700">
@@ -35,6 +35,7 @@
         
         </div>
     </div>
+
 <form class="flex h-[50px] gap-3" action="">
     <input class="rounded-md" type="text">
     <button type="submit" class="text-white bg-blue-600 rounded-md px-2 hover:bg-blue-700  ">Search</button>
@@ -47,7 +48,7 @@
     </button>
 </div>
 </nav>
-<main class="h-[90vh]" >{% block content %}{% endblock %}</main>
+<main class="grow" >{% block content %}{% endblock %}</main>
 <footer class="flex  p-5 mt-5 bg-slate-300 justify-center items-center">
 <h1>Copyright &copy; 2024 </h1>
 

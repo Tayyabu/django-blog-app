@@ -1,5 +1,13 @@
 {% extends "layout.html" %} {% load static %}
  {% block title %}All Blog Posts{% endblock%} 
     {% block content %}
-{{post.title}}
+<h1>{{post.title}}</h1>
+
+<div>
+    {{pos6.intro}}
+</div>
+
+{{post.content | safe}}
+
+
 {% endblock %}

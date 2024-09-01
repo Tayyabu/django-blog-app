@@ -2,14 +2,14 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from cloudinary.models import CloudinaryField
-from tinymce import models as md
+
 
 # Create your models here
 
 class Post(models.Model):
     title = models.CharField(max_length =50,unique=True)
     intro = models.TextField()
-    content = md.HTMLField(null=True,blank=True)
+    content = models.TextField(null=True,blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(default ="",blank=True,null=True)
@@ -31,7 +31,7 @@ class BlogImage(models.Model):
 
 
 def post_created(sender,instance,created, **kwargs):
-    if created:
+    
         instance.slug = instance.title.replace(" ","-")
         instance.save()
 
